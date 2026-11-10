@@ -4,9 +4,27 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { siteConfig } from "@/config/site";
 
-export function ClosingCta() {
+type CtaAction = { label: string; href: string };
+
+type CtaSectionProps = {
+  title?: string;
+  description?: string;
+  primary?: CtaAction;
+  secondary?: CtaAction;
+  /** Drop the top padding when the previous section already provides spacing */
+  flushTop?: boolean;
+};
+
+/** Closing call-to-action panel used at the bottom of every page. */
+export function CtaSection({
+  title = "Let's Build What's Next.",
+  description = "Whether you are planning a new initiative, modernising existing systems or developing your team's skills, we would be glad to hear from you.",
+  primary = { label: "Get in Touch", href: "/contact" },
+  secondary = { label: "Explore Our Services", href: "/services" },
+  flushTop = false,
+}: CtaSectionProps) {
   return (
-    <section aria-labelledby="cta-title" className="pb-20 sm:pb-28">
+    <section aria-labelledby="cta-title" className={flushTop ? "pb-20 sm:pb-28" : "py-20 sm:py-28"}>
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-navy-900 via-navy-800 to-brand-600 px-6 py-16 text-center text-white sm:px-12 sm:py-20 lg:py-24">
@@ -27,18 +45,17 @@ export function ClosingCta() {
               {siteConfig.brandStatement}
             </p>
             <h2 id="cta-title" className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-              Let&apos;s Build What&apos;s Next.
+              {title}
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-              Whether you are planning a new initiative, modernising existing systems or developing
-              your team&apos;s skills, we would be glad to hear from you.
+              {description}
             </p>
             <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
-              <ButtonLink href="/contact" size="lg" variant="outline-light" arrow>
-                Get in Touch
+              <ButtonLink href={primary.href} size="lg" variant="outline-light" arrow>
+                {primary.label}
               </ButtonLink>
-              <ButtonLink href="/services" size="lg" variant="ghost-dark">
-                Explore Our Services
+              <ButtonLink href={secondary.href} size="lg" variant="ghost-dark">
+                {secondary.label}
               </ButtonLink>
             </div>
             <a

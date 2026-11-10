@@ -32,6 +32,18 @@ export const siteConfig = {
     hours: null as string | null,
   },
 
+  /**
+   * Contact form delivery.
+   * PLACEHOLDER: no backend or form service is configured yet, so the form
+   * cannot send messages. Set `endpoint` to a form-service URL that accepts a
+   * JSON POST (fields: name, email, phone, subject, message) to enable sending.
+   * Until then, the form validates input and offers to open the visitor's email
+   * app with the message pre-filled; it never claims the enquiry was delivered.
+   */
+  contactForm: {
+    endpoint: null as string | null,
+  },
+
   /** PLACEHOLDER: add official profile URLs. Empty values are hidden. */
   social: {
     linkedin: null as string | null,

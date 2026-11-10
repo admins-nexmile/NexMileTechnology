@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClosingCta } from "@/components/home/ClosingCta";
+import { CtaSection } from "@/components/sections/CtaSection";
 import { Hero } from "@/components/home/Hero";
 import { IndustriesSection } from "@/components/home/IndustriesSection";
 import { Intro } from "@/components/home/Intro";
@@ -40,7 +40,7 @@ export default function HomePage() {
       <IndustriesSection />
       <TrainingIntro />
       <WhyNexmile />
-      <ClosingCta />
+      <CtaSection flushTop />
     </>
   );
 }
