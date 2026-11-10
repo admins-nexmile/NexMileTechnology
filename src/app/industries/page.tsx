@@ -61,7 +61,7 @@ export default function IndustriesPage() {
               </Reveal>
             ))}
 
-            <Reveal as="li" delay={0.08}>
+            <Reveal as="li" delay={0.08} className="lg:col-span-2">
               <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-navy-900 to-brand-600 p-8 text-white">
                 <div aria-hidden="true" className="bg-grid-dark absolute inset-0 opacity-60" />
                 <div className="relative">
