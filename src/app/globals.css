@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * NexmileTechnology design tokens.
+ * Brand colours are sampled from the official logo:
+ *   navy  #002878  ("Nexmile" wordmark, the N mark)
+ *   blue  #0064B4  (mark gradient)
+ *   sky   #00A0F0  ("Technology" wordmark, orbit)
+ */
+@theme {
+  /* Navy scale: backgrounds, headings, primary text */
+  --color-navy-950: #020b26;
+  --color-navy-900: #04163f;
+  --color-navy-800: #002878;
+  --color-navy-700: #0a3a8c;
+
+  /* Professional blue: primary actions, links */
+  --color-brand-700: #004f94;
+  --color-brand-600: #0064b4;
+  --color-brand-500: #1a7fd4;
+  --color-brand-100: #dcebfa;
+  --color-brand-50: #eef5fd;
+
+  /* Sky (logo) and electric cyan: accents only */
+  --color-sky-500: #00a0f0;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-300: #67e8f9;
+
+  /* Neutrals */
+  --color-ink: #0b1530;
+  --color-muted: #4a5872;
+  --color-subtle: #6b7891;
+  --color-line: #e3e8f0;
+  --color-surface: #f4f7fb;
+  --color-surface-2: #eaf0f7;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui,
+    sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(11 21 48 / 0.04), 0 8px 24px -12px rgb(11 21 48 / 0.12);
+  --shadow-card-hover: 0 2px 4px rgb(11 21 48 / 0.05), 0 20px 40px -16px rgb(0 40 120 / 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keep anchored sections clear of the sticky header */
+    scroll-padding-top: 5.5rem;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-cyan-300);
+    color: var(--color-navy-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Faint technical grid used on dark sections */
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgb(0 40 120 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 40 120 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(100deg, var(--color-cyan-300), var(--color-sky-500) 55%, #7cc4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* CSS-only entrance for above-the-fold content: visible without waiting for JavaScript */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
+}
+
+.animate-orbit-slow {
+  animation: orbit-spin 60s linear infinite;
+}
+
+.animate-orbit-slower {
+  animation: orbit-spin 90s linear infinite reverse;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 4s ease-in-out infinite;
 }
