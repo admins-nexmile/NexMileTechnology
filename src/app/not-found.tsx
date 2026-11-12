@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
+    <SiteChrome>
     <section className="py-28 sm:py-36">
       <Container className="max-w-2xl text-center">
         <p className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">404</p>
@@ -26,5 +28,6 @@ export default function NotFound() {
         </div>
       </Container>
     </section>
+    </SiteChrome>
   );
 }

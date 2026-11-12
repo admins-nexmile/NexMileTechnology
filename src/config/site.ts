@@ -68,3 +68,6 @@ export const mainNav: NavItem[] = [
 ];
 
 export const ctaLink: NavItem = { label: "Get in Touch", href: "/contact" };
+
+/** Employee portal (HRMS) sign-in. Invitation-only, Google accounts. */
+export const loginLink: NavItem = { label: "Employee Login", href: "/hrms/login" };

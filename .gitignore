@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# HRMS database backups (may contain HR data) - never commit
+/database/backups/
