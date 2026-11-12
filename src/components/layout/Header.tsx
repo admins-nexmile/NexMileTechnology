@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Container } from "@/components/ui/Container";
-import { ctaLink, mainNav } from "@/config/site";
+import { ctaLink, loginLink, mainNav } from "@/config/site";
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
@@ -110,6 +110,13 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Link
+            href={loginLink.href}
+            prefetch={false}
+            className="hidden h-10 items-center rounded-full border border-line px-4 text-sm font-semibold text-navy-800 transition-colors hover:border-brand-500 hover:text-brand-600 sm:inline-flex"
+          >
+            {loginLink.label}
+          </Link>
+          <Link
             href={ctaLink.href}
             className="hidden h-10 items-center rounded-full bg-brand-600 px-5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgb(0_100_180/0.7)] transition-colors hover:bg-brand-700 sm:inline-flex"
           >
@@ -171,6 +178,14 @@ export function Header() {
                 className="mt-8 flex h-12 items-center justify-center rounded-full bg-brand-600 text-base font-semibold text-white"
               >
                 {ctaLink.label}
+              </Link>
+              <Link
+                href={loginLink.href}
+                prefetch={false}
+                onClick={() => setOpen(false)}
+                className="mt-3 flex h-12 items-center justify-center rounded-full border border-line text-base font-semibold text-navy-800"
+              >
+                {loginLink.label}
               </Link>
             </Container>
           </motion.div>

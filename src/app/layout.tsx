@@ -1,8 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { MotionProvider } from "@/components/providers/MotionProvider";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -60,21 +57,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">
-        <a
-          href="#main-content"
-          className="sr-only z-[60] rounded-full bg-navy-800 px-5 py-3 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
-        >
-          Skip to main content
-        </a>
-        <MotionProvider>
-          <Header />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </MotionProvider>
-      </body>
+      {/* Marketing pages get their header/footer from app/(site)/layout.tsx;
+          the employee portal under /hrms has its own shell. */}
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }
